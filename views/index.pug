@@ -1,0 +1,175 @@
+extends layout
+
+block content
+    .container
+        br
+        h2(style='text-decoration: underline') Commerce Chain Demo
+        br
+        .card.card-header
+            ul.nav.nav-pills.nav-fill
+                li.nav-item
+                    a#events-tab.nav-link.active(href='#events', role='tab', data-toggle='tab', aria-controls='events', aria-selected='true') Events
+                li.nav-item
+                    a#interact-tab.nav-link(href='#interact', role='tab', data-toggle='tab', aria-controls='interact', aria-selected='true') Add Transactions
+                li.nav-item
+                    a#view-tab.nav-link(href='#view', role='tab', aria-controls='view', data-toggle='tab', aria-selected='false') View All Transactions
+                li.nav-item
+                    a#view-outside-tab.nav-link(href='#view-outside', aria-controls='view-outside', role='tab', data-toggle='tab', aria-selected='false') View All Transactions (outside view)
+        #tabContent.tab-content
+            #events.tab-pane.fade.show.active(role='tabpanel', aria-labelby='view-tab')
+                br
+                h3 Blockchain Events
+                br
+                .card
+                    .card-header
+                        | Blockchain Events
+                    .card-body
+                        h5.card-title All blockchain events are shown below
+                        .input-group
+                            .input-group-prepend
+                                span.input-group-text Event Box
+                            textarea#textArea.form-control(style='height: 150px;', aria-label='With textarea')
+                br
+            #interact.tab-pane.fade(role='tabpanel', aria-labelby='interact-tab')
+                br
+                h4 Add Blockchain Transactions
+                br
+                h3 Adders
+                .card
+                    .card-header
+                        | Add Category
+                    .card-body
+                        h5.card-title Click a button to perform add category
+                        input#cat_id(type='text', maxlength='32')
+                        |  Category ID
+                        br
+                        input#cat_name(type='text')
+                        |  Name
+                        br
+                        input#cat_desc(type='text')
+                        |  Description
+                        br
+                        button#btnAddCat.btn.btn-primary(type='button') Add Category
+                .card
+                    .card-header
+                        | Add Supplier
+                    .card-body
+                        h5.card-title Click a button to perform add supplier
+                        input#sup_id(type='text', maxlength='32')
+                        |  Category ID
+                        br
+                        input#sup_name(type='text')
+                        |  Name
+                        br
+                        input#sup_memberType(type='text', maxlength='32')
+                        |  MemberType
+                        br
+                        input#sup_ckNumber(type='text', maxlength='32')
+                        |  CK Number
+                        br
+                        input#sup_mobile(type='text', maxlength='32')
+                        |  Mobile
+                        br
+                        input#sup_telephone(type='text', maxlength='32')
+                        |  Telephone
+                        br
+                        input#sup_slogan(type='text')
+                        |  Slogan
+                        br
+                        input#sup_insta(type='text', maxlength='32')
+                        |  Instagram
+                        br
+                        input#sup_fb(type='text', maxlength='32')
+                        |  Facebook
+                        br
+                        input#sup_twitter(type='text', maxlength='32')
+                        |  Twitter
+                        br
+                        button#btnAddSupplier.btn.btn-primary(type='button') Add Supplier
+                .card
+                    .card-header
+                        | Add Product
+                    .card-body
+                        h5.card-title Click a button to perform add product
+                        input#prod_id(type='text', maxlength='32')
+                        |  Category ID
+                        br
+                        input#prod_name(type='text')
+                        |  Name
+                        br
+                        input#prod_desc(type='text')
+                        |  Description
+                        br
+                        input#prod_sup_id(type='text', maxlength='32')
+                        |  Supplier ID
+                        br
+                        input#prod_cat_id(type='text', maxlength='32')
+                        |  Category ID
+                        br
+                        input#prod_price(type='number')
+                        |  Price
+                        br
+                        button#btnAddProd.btn.btn-primary(type='button') Add Product
+                br
+                h3 Getters
+                .card
+                    .card-header
+                        | Get Category
+                    .card-body
+                        .input-group.mb-3
+                            .input-group-prepend
+                                span#basic-addon1.input-group-text Category ID
+                            input#cat_id_get.form-control(type='text', placeholder='Category ID', aria-label='Username', aria-describedby='basic-addon1', maxlength='32')
+                        button#btnGetCat.btn.btn-primary(type='button') Get Category
+                        br
+                        textarea#catDivResult
+                .card
+                    .card-header
+                        | Get Supplier
+                    .card-body
+                        .input-group.mb-3
+                            .input-group-prepend
+                                span#basic-addon2.input-group-text Supplier ID
+                            input#sup_id_get.form-control(type='text', placeholder='Supplier ID', aria-label='Username', aria-describedby='basic-addon2', maxlength='32')
+                        button#btnGetSupplier.btn.btn-primary(type='button') Get Supplier
+                        br
+                        textarea#supDivResult
+                .card
+                    .card-header
+                        | Get Product
+                    .card-body
+                        .input-group.mb-3
+                            .input-group-prepend
+                                span#basic-addon3.input-group-text Product ID
+                            input#prod_id_get.form-control(type='text', placeholder='Product ID', aria-label='Username', aria-describedby='basic-addon3', maxlength='32')
+                        button#btnGetProf.btn.btn-primary(type='button') Get Product
+                        br
+                        textarea#prodDivResult
+            #view.tab-pane.fade(role='tabpanel', aria-labelby='view-tab')
+                br
+                h4 Blockchain Transactions (internal view)
+                br
+                .row
+                    .col-sm-6
+                        h5.card-title(style='float: left;') All blockchain events are shown below
+                    .col-sm-6
+                        button#btnUpdateTransactions.btn.btn-dark.m-1(style='float: right;') Update
+                .input-group
+                    .input-group-prepend
+                        span.input-group-text Transaction Box
+                    textarea#transactionBox.form-control(style='height: 150px;', aria-label='With textarea')
+            #view-outside.tab-pane.fade(role='tabpanel', aria-labelby='view-outside-tab')
+                br
+                h4 Blockchain Transactions (outside view)
+                br
+                .row
+                    .col-sm-6
+                        h5.card-title(style='float: left;') All blockchain events are shown below
+                    .col-sm-6
+                        button#btnUpdateTransactionsOutside.btn.btn-dark.m-1(style='float: right;')
+                            | Update
+                .input-group
+                    .input-group-prepend
+                        span.input-group-text Transaction Box
+                    textarea#transactionBoxOutside.form-control(style='height: 150px;', aria-label='With textarea')
+

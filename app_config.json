@@ -1,0 +1,38 @@
+{
+  "server": {
+    "port": 3000
+  },
+  "websocket": {
+    "enable": true,
+    "port": 8443
+  },
+  "secret": {
+    "private_key": "60487ba3f51759efe661254dbfe541b2c27230875f911daea91c74e1cd376f42",
+    "password": "1234"
+  },
+  "wallet": {
+    "address": "0x03475dbf0cc90f88188e50417129a931faa9bb53",
+    "unlockDuration": "30"
+  },
+  "topUp": {
+    "address": "0x215f5149878FF64eFEE54ee8036D6D6c79Af07BE",
+    "password": "",
+    "enable": "true",
+    "amount": "19"
+  },
+  "provider": {
+    "protocol": "ws",
+    "address": "0.0.0.0",
+    "method": "",
+    "port": "8545",
+    "usesWebsocket": "true"
+  },
+  "contract": {
+    "contractName": "CommerceChain",
+    "deployAddress": "0x01437679b5dAB22d90A9b9970F587581745c2883",
+    "deployGas": "5100000",
+    "transactionGas": "30000"
+  },
+  "debug": "yes",
+  "enableBlockchain": false
+}
