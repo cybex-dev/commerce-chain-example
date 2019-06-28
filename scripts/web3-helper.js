@@ -44,6 +44,15 @@ function isConnected(callback) {
 }
 
 /**
+ * Obfuscate a value into a valid ethereum address
+ * @param input
+ * @returns {string}
+ */
+function obfuscatedAddress(input) {
+    return web3.utils.toChecksumAddress(web3.utils.sha3(input).substr(2, 40))
+}
+
+/**
  * Converts a given input to hex form, is then converted to hex form. Integers, etc are treated as strings UTF8.
  * @param input input text/numbers
  * @returns {*} hex representation of input
@@ -53,6 +62,22 @@ function utf8ToBytes32(input) {
         throw "String to long. Must be equal to or shorter than 32 chars";
     }
     return web3.utils.utf8ToHex(input.toString());
+}
+
+/**
+ * Returns true if the input value is already a hex value
+ * @param input
+ */
+function isHex(input) {
+    return web3.utils.isHexStrict(input);
+}
+
+/**
+ * Returns true if the input value is an address
+ * @param input
+ */
+function isAddress(input) {
+    return web3.utils.isAddress(input);
 }
 
 /**
@@ -104,5 +129,8 @@ module.exports = {
     weiToEther,
     UIntToFloat,
     floatToUint,
-    etherToWei
+    etherToWei,
+    isHex,
+    isAddress,
+    obfuscatedAddress
 };

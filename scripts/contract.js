@@ -22,6 +22,9 @@ function getAllTransactions(callback) {
                 }
             });
         }
+        if (array.length === 0) {
+            callback(array);
+        }
     });
 }
 
@@ -42,6 +45,9 @@ function getAllPurchases(transactionId, callback) {
                 }
             });
         }
+        if (array.length === 0) {
+            callback(array);
+        }
     });
 }
 
@@ -60,6 +66,9 @@ function getAllProducts(callback) {
                     callback(items);
                 }
             });
+        }
+        if (array.length === 0) {
+            callback(array);
         }
     });
 }
@@ -80,6 +89,9 @@ function getAllSuppliers(callback) {
                 }
             });
         }
+        if (array.length === 0) {
+            callback(array);
+        }
     });
 }
 
@@ -98,6 +110,9 @@ function getAllCategories(callback) {
                     callback(items);
                 }
             });
+        }
+        if (array.length === 0) {
+            callback(array);
         }
     });
 }
@@ -185,6 +200,9 @@ function getTransactionIndex(callback) {
                 }
             });
         }
+        if (length === "0"){
+            callback([]);
+        }
     });
 }
 
@@ -203,6 +221,9 @@ function getProductIndex(callback) {
                     callback(array);
                 }
             });
+        }
+        if (length === "0"){
+            callback([]);
         }
     });
 }
@@ -223,6 +244,9 @@ function getSuppliersIndex(callback) {
                 }
             })
         }
+        if (length === "0"){
+            callback([]);
+        }
     });
 }
 
@@ -241,6 +265,9 @@ function getCategoryIndex(callback) {
                     callback(array);
                 }
             })
+        }
+        if (length === "0"){
+            callback([]);
         }
     });
 }
@@ -460,7 +487,9 @@ function getPurchase(txID, pchsID, callback) {
  * @param callback callback when transaction completed
  */
 function getProduct(prodID, callback) {
-    prodID = _web3Helper.utf8ToBytes32(prodID);
+    if (!_web3Helper.isHex(prodID)) {
+        prodID = _web3Helper.utf8ToBytes32(prodID);
+    }
     callMethod(contract.methods.getProduct(prodID), true, false, (value) => {
         if (value === undefined) {
             callback();
@@ -485,7 +514,9 @@ function getProduct(prodID, callback) {
  * @param callback callback when transaction completed
  */
 function getSupplier(suppID, callback) {
-    suppID = _web3Helper.utf8ToBytes32(suppID);
+    if (!_web3Helper.isHex(suppID)) {
+        suppID = _web3Helper.utf8ToBytes32(suppID);
+    }
     callMethod(contract.methods.getSupplier(suppID), true, false, (value) => {
         if (value === undefined) {
             callback();
@@ -514,7 +545,9 @@ function getSupplier(suppID, callback) {
  * @param callback callback when transaction completed
  */
 function getCategory(catID, callback) {
-    catID = _web3Helper.utf8ToBytes32(catID);
+    if (!_web3Helper.isHex(catID)) {
+        catID = _web3Helper.utf8ToBytes32(catID);
+    }
     callMethod(contract.methods.getCategory(catID), true, false, (value) => {
         if (value === undefined) {
             callback();
@@ -898,13 +931,13 @@ function _sendTransaction(transaction, callback) {
         }).then(value => {
             if (value) {
                 _accounts.lockAccount(config.wallet.address);
-                callback(value);
+                callback(JSON.stringify({value: value}));
             }
         }, reason => {
             if (reason) {
                 console.error(reason.message);
             }
-            callback();
+            callback(({error: reason}));
         });
     });
 }

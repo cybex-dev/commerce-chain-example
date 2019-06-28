@@ -61,7 +61,7 @@ function exists(address, callback) {
         }
 
         // contract does not exist if code == '0x'
-        callback(value !== "0x");
+        callback(!(value === "0x" || value === "0x0"));
     });
 }
 

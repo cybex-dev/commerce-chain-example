@@ -28,11 +28,27 @@ block content
                         .input-group
                             .input-group-prepend
                                 span.input-group-text Event Box
-                            textarea#textArea.form-control(style='height: 150px;', aria-label='With textarea')
+                            textarea#eventsTextArea.form-control(style='height: 150px;', aria-label='With textarea')
                 br
             #interact.tab-pane.fade(role='tabpanel', aria-labelby='interact-tab')
                 br
                 h4 Add Blockchain Transactions
+                br
+                h3
+                .card
+                    .card-header
+                        | Quick Access
+                    .card-body
+                        .row
+                            .col-sm-3
+                                button#categoriesCount.btn.btn-primary(type='button') # Categories
+                            .col-sm-3
+                                button#suppliersCount.btn.btn-primary(type='button') # Suppliers
+                            .col-sm-3
+                                button#productsCount.btn.btn-primary(type='button') # Products
+                            .col-sm-3
+                                button#txsCount.btn.btn-primary(type='button') # Transactions
+
                 br
                 h3 Adders
                 .card
@@ -56,7 +72,7 @@ block content
                     .card-body
                         h5.card-title Click a button to perform add supplier
                         input#sup_id(type='text', maxlength='32')
-                        |  Category ID
+                        |  Supplier ID
                         br
                         input#sup_name(type='text')
                         |  Name
@@ -92,7 +108,7 @@ block content
                     .card-body
                         h5.card-title Click a button to perform add product
                         input#prod_id(type='text', maxlength='32')
-                        |  Category ID
+                        |  Product ID
                         br
                         input#prod_name(type='text')
                         |  Name
@@ -107,9 +123,66 @@ block content
                         |  Category ID
                         br
                         input#prod_price(type='number')
-                        |  Price
+                        |  Unit Price
                         br
                         button#btnAddProd.btn.btn-primary(type='button') Add Product
+                .card
+                    .card-header
+                        | Add Transaction
+                    .card-body
+                        h5.card-title Click a button to perform add transaction
+                        input#tx_id(type='text', maxlength='32')
+                        |  Transaction ID
+                        br
+                        input#tx_status(type='text')
+                        |  Status
+                        br
+                        input#tx_total_amount(type='number')
+                        |  Total Amount
+                        br
+                        input#tx_discount_perc(type='number')
+                        |  Discount %
+                        br
+                        input#tx_refunded(type='checkbox')
+                        |  Refunded?
+                        br
+                        input#tx_refunded_mount(type='number')
+                        |  Refund Amount
+                        br
+                        button#btnAddTransaction.btn.btn-primary(type='button') Add Transaction
+                .card
+                    .card-header
+                        | Add Purchase to Transaction
+                    .card-body
+                        h5.card-title Click a button to perform add purchase to transaction
+                        input#purch_id(type='number')
+                        |  Purchase ID
+                        br
+                        input#purch_txId(type='number')
+                        |  Containing Transaction
+                        br
+                        input#purch_productId(type='text', maxlength='32')
+                        |  Product ID (to purchase)
+                        br
+                        input#purch_quantity(type='number', value='0')
+                        |  Quantity
+                        br
+                        input#purch_onSale(type='checkbox')
+                        |  Item on Sale?
+                        br
+                        input#purch_itemsReturned(type='number', value='0')
+                        |  Items Returned
+                        br
+                        input#purch_discountPerc(type='number', value='0')
+                        |  Discount %
+                        br
+                        input#purch_amount(type='number', value='0')
+                        |  Total
+                        br
+                        input#purch_returns(type='number', value='0')
+                        |  Returned Amount (items returned value)
+                        br
+                        button#btnAddPurchase.btn.btn-primary(type='button') Add Purchase to Transaction
                 br
                 h3 Getters
                 .card
@@ -120,9 +193,13 @@ block content
                             .input-group-prepend
                                 span#basic-addon1.input-group-text Category ID
                             input#cat_id_get.form-control(type='text', placeholder='Category ID', aria-label='Username', aria-describedby='basic-addon1', maxlength='32')
-                        button#btnGetCat.btn.btn-primary(type='button') Get Category
+                        .row
+                            .col-sm-3
+                                button#btnGetCat.btn.btn-primary(type='button') Get Category
+                            .col-sm-3
+                                button#btnGetCatAll.btn.btn-primary(type='button') All
                         br
-                        textarea#catDivResult
+                        textarea#catDivResult(style='width: 100%;')
                 .card
                     .card-header
                         | Get Supplier
@@ -131,9 +208,13 @@ block content
                             .input-group-prepend
                                 span#basic-addon2.input-group-text Supplier ID
                             input#sup_id_get.form-control(type='text', placeholder='Supplier ID', aria-label='Username', aria-describedby='basic-addon2', maxlength='32')
-                        button#btnGetSupplier.btn.btn-primary(type='button') Get Supplier
+                        .row
+                            .col-sm-3
+                                button#btnGetSupplier.btn.btn-primary(type='button') Get Supplier
+                            .col-sm-3
+                                button#btnGetSupplierAll.btn.btn-primary(type='button') All
                         br
-                        textarea#supDivResult
+                        textarea#supDivResult(style='width: 100%;')
                 .card
                     .card-header
                         | Get Product
@@ -142,9 +223,40 @@ block content
                             .input-group-prepend
                                 span#basic-addon3.input-group-text Product ID
                             input#prod_id_get.form-control(type='text', placeholder='Product ID', aria-label='Username', aria-describedby='basic-addon3', maxlength='32')
-                        button#btnGetProf.btn.btn-primary(type='button') Get Product
+                        .row
+                            .col-sm-3
+                                button#btnGetProd.btn.btn-primary(type='button') Get Product
+                            .col-sm-3
+                                button#btnGetProdAll.btn.btn-primary(type='button') All
                         br
-                        textarea#prodDivResult
+                        textarea#prodDivResult(style='width: 100%;')
+                .card
+                    .card-header
+                        | Get Transaction
+                    .card-body
+                        .input-group.mb-3
+                            .input-group-prepend
+                                span#basic-addon4.input-group-text Transaction
+                            input#tx_id_get.form-control(type='number', placeholder='Transaction ID', aria-label='Username', aria-describedby='basic-addon4')
+                        .row
+                            .col-sm-3
+                                button#btnGetTransaction.btn.btn-primary(type='button') Get Transaction
+                            .col-sm-3
+                                button#btnGetTransactionAll.btn.btn-primary(type='button') All
+                        br
+                        textarea#txDivResult(style='width: 100%;')
+                .card
+                    .card-header
+                        | Get Product
+                    .card-body
+                        .input-group.mb-3
+                            .input-group-prepend
+                                span#basic-addon5.input-group-text Purchase Details
+                            input#purch_tx_id_get.form-control(type='number', placeholder='Owning Transaction ID', aria-label='Username', aria-describedby='basic-addon5')
+                            input#purch_id_get.form-control(type='number', placeholder='Purchase ID', aria-label='Username', aria-describedby='basic-addon5')
+                        button#btnGetPurchase.btn.btn-primary(type='button') Get Purchase Info
+                        br
+                        textarea#purchDivResult(style='width: 100%;')
             #view.tab-pane.fade(role='tabpanel', aria-labelby='view-tab')
                 br
                 h4 Blockchain Transactions (internal view)
