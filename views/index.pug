@@ -25,6 +25,7 @@ block content
                         | Blockchain Events
                     .card-body
                         h5.card-title All blockchain events are shown below
+                        i This uses a websocket connection that recieves any event on the blockchain from the server. Naturally, event proccessing can be done to limit the number of events shown (preferred server side)
                         .input-group
                             .input-group-prepend
                                 span.input-group-text Event Box
@@ -32,13 +33,15 @@ block content
                 br
             #interact.tab-pane.fade(role='tabpanel', aria-labelby='interact-tab')
                 br
-                h4 Add Blockchain Transactions
+                h4 Interact with blockchain
                 br
+                i Here, we can interact with the blockchain
                 h3
                 .card
                     .card-header
                         | Quick Access
                     .card-body
+                        i This call the length() methods on the contract. Use this te get the number of items in the contract.
                         .row
                             .col-sm-3
                                 button#categoriesCount.btn.btn-primary(type='button') # Categories
@@ -50,7 +53,7 @@ block content
                                 button#txsCount.btn.btn-primary(type='button') # Transactions
 
                 br
-                h3 Adders
+                h3 Add items to blockchain
                 .card
                     .card-header
                         | Add Category
@@ -184,7 +187,7 @@ block content
                         br
                         button#btnAddPurchase.btn.btn-primary(type='button') Add Purchase to Transaction
                 br
-                h3 Getters
+                h3 Get items from blockchain
                 .card
                     .card-header
                         | Get Category

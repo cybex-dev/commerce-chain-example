@@ -16,14 +16,23 @@ var app = express();
 let contractInterface = require('./scripts/interface');
 
 // debug - disable blockchain
-if (app_config.enableBlockchain) {
+if (app_config.enableBlockchain === "true") {
 
-    // Initialize Blockchain
+    // Initialize Blockchain. This starts all the blockchain processing scripts
+    /*
+     * Check if an account exists, else create one
+     * Check if the account has funds in, if not transfer funds
+     * Check if a contract exists, get it or create one
+     */
     contractInterface.init((contract) => {
         console.log("Blockchain initialized");
 
         // Check if we should use websocket
-        if (app_config.websocket.enable) {
+        if (app_config.websocket.enable === "true") {
+
+            // Note:
+            // contractInterface houses events, etc
+            // contractInterface.getContractInterface() is the underlying interface to call methods on the contract
             _ws.init(app, contractInterface);
 
         }

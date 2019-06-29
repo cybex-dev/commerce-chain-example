@@ -1,1 +1,38 @@
-{"server":{"port":3000},"websocket":{"enable":true,"port":8443},"secret":{"private_key":"d1d429b210975fefc866b96f0547ae749f144b11ba9f20e2789fe4720f3a277c","password":"1234"},"wallet":{"address":"0x0751604791d3930ddb62f381ece546a20e0e7d8c","unlockDuration":"30"},"topUp":{"address":"0x086c65179f6a6D4a443224926ba0695782BF055f","password":"","enable":"true","amount":"5"},"provider":{"protocol":"ws","address":"0.0.0.0","method":"","port":"7545","usesWebsocket":"true"},"contract":{"contractName":"CommerceChain","deployAddress":"0x2786FCC9D876E4128e80ad9EEE3b1ABDaC478355","deployGas":"5100000","transactionGas":"6721970"},"debug":"yes","enableBlockchain":true}
+{
+  "server": {
+    "port": 3000
+  },
+  "websocket": {
+    "enable": "true",
+    "port": 8443
+  },
+  "secret": {
+    "private_key": "d1d429b210975fefc866b96f0547ae749f144b11ba9f20e2789fe4720f3a277c",
+    "password": "1234"
+  },
+  "wallet": {
+    "address": "0x0751604791d3930ddb62f381ece546a20e0e7d8c",
+    "unlockDuration": "30"
+  },
+  "topUp": {
+    "address": "0x086c65179f6a6D4a443224926ba0695782BF055f",
+    "password": "",
+    "enable": "true",
+    "amount": "5"
+  },
+  "provider": {
+    "protocol": "ws",
+    "address": "0.0.0.0",
+    "method": "",
+    "port": "7545",
+    "usesWebsocket": "true"
+  },
+  "contract": {
+    "contractName": "CommerceChain",
+    "deployAddress": "0x2786FCC9D876E4128e80ad9EEE3b1ABDaC478355",
+    "deployGas": "5100000",
+    "transactionGas": "6721970"
+  },
+  "debug": "yes",
+  "enableBlockchain": "true"
+}
